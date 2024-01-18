@@ -1,17 +1,11 @@
 ---
 import NavComponent from '../components/NavComponent.astro'
 import ResponsiveMenuComponent from '../components/ResponsiveMenuComponent.astro'
-
+import Head from '../components/Head.astro'
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>M&G Exteriorz</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-	</head>
+	<Head />
 	<body >
     <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh">
       <!-- Could have a function that fetchs an array of images and cycles through them -->
