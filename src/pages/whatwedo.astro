@@ -1,0 +1,63 @@
+---
+import NavComponent from "../components/NavComponent.astro";
+import  data  from '../dummyData.json'
+import Head from '../components/Head.astro'
+
+
+
+
+
+
+
+
+
+---
+<Head />
+<NavComponent/>
+
+
+
+ 
+
+<div class="relative isolate px-6 pt-14 lg:px-8">
+        
+  <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+      
+    </div>
+    <div class="text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-[black] sm:text-6xl">What we do!</h1>
+      <p class="mt-6 text-lg leading-8 text-black-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+      
+    </div>
+  </div>
+  
+</div>
+
+  <div class="flex flex-wrap justify-center mt-10">
+    <!-- card 1 -->
+
+   { data.map((data) => (
+
+  <div id={data.id}class="mb-10 mx-auto max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 max-sm: mx-5">
+                  <a href="#">
+                      <img class="rounded-t-lg" src=`${data.img}` alt="" />
+                  </a>
+                      <div class="p-5">
+                          <a href="#">
+                              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
+                          </a>
+                          <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">{data.description}</p>
+                          
+                      </div>
+            </div>
+
+   ))
+          
+   }
+          
+      
+          
+  </div>
+
+</div>
