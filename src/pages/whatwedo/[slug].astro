@@ -1,31 +1,34 @@
 ---
 import type { GetStaticPaths } from "astro";
-
 import { sanityClient } from "sanity:client";
 import imageUrlBuilder from '@sanity/image-url'
 import NavComponent from "../../components/NavComponent.astro";
-
+import Gallery from '../../components/Gallery.jsx'
 
 export const getStaticPaths = ( async () => {
   const page = await sanityClient.fetch(`*[_type == "page"]`)
   
-  return page.map(({title, description,  _id, slug}) => {
+  return page.map(({title, description,  _id, slug, gallery}) => {
     return {
       params: {slug: slug.current},
-      props: {title, description, _id, slug}
+      props: {title, description, _id, slug, gallery}
     }
   })
 }) satisfies GetStaticPaths;
 
-const {title, description, _id } = Astro.props
+const {title, description, _id, gallery } = Astro.props
 
 
 ---
 <NavComponent />
 
-    <div>
-      <div>{title}</div>
-      <div>{description}</div>
-      
+    <div id={_id} class="relative flex flex-col items-center">
+        <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
+
+        <div class="text-4xl font-extrabold mb-4">{title}</div>
+        <div class="mb-4">{description}</div>
+        
+        
+        <Gallery data={Astro.props} client:only />
       
     </div>

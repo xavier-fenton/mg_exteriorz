@@ -42,16 +42,16 @@ import Head from '../components/Head.astro'
   
 </div>
 
-  <div class="flex flex-wrap justify-center mt-10">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
   
 
 
   {props.map((props) => {
     
     return (
-          <div id={props._id}class="mb-10 max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 max-sm: mx-5">
+          <div id={props._id}class="mb-4  bg-white h-[500px] border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 max-sm: mx-5">
             <a href={`/whatwedo/${props.slug.current}`} >
-                <img class="rounded-t-lg" src="/images/backgroundIMGExample.jpg" alt="" />
+                <img class="" src="/images/backgroundIMGExample.jpg" alt="" />
             
                   <div class="p-5">
                           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
