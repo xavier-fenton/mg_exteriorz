@@ -9,12 +9,10 @@ import { sanityClient } from "sanity:client";
 const fetch_landing_content = await sanityClient.fetch('*[_type == "landing"]')
 
 
-
+// refactor this code
 const landing_content = fetch_landing_content.map((data) => {
-  
   return data
 })
-console.log(landing_content);
 
 
 ---

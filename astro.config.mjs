@@ -8,14 +8,14 @@ export default defineConfig({
   output: 'hybrid',
   integrations: [
     tailwind(),
-    react(),
     sanityIntegration({
       projectId: '07dp7kpt',
       dataset: 'production',
-      // Set useCdn to false if you're building statically.
+      apiVersion: '2023-02-08',
       useCdn: false,
       // Access the Studio on your.url/admin
       studioBasePath: '/admin',
     }),
+    react(),
   ],
 })
