@@ -19,7 +19,7 @@ import Head from '../components/Head.astro'
 
  
 
-<div class="relative isolate px-6 pt-14 lg:px-8">
+<div class="relative isolate px-6 pt-14 lg:px-8 bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat">
         
   <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
     <div class="hidden sm:mb-8 sm:flex sm:justify-center">
@@ -35,11 +35,11 @@ import Head from '../components/Head.astro'
 </div>
 
   <div class="flex flex-wrap justify-center mt-10">
-    <!-- card 1 -->
+  
 
    { data.map((data) => (
 
-  <div id={data.id}class="mb-10 mx-auto max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 max-sm: mx-5">
+  <div id={data.id}class="mb-10 max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 max-sm: mx-5">
                   <a href="#">
                       <img class="rounded-t-lg" src=`${data.img}` alt="" />
                   </a>

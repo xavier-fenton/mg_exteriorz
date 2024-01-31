@@ -2,14 +2,28 @@
 import NavComponent from '../components/NavComponent.astro'
 import ResponsiveMenuComponent from '../components/ResponsiveMenuComponent.astro'
 import Head from '../components/Head.astro'
+import {PortableText as PortableTextInternal} from "astro-portabletext"
+import { sanityClient } from "sanity:client";
+
+
+const fetch_landing_content = await sanityClient.fetch('*[_type == "landing"]')
+
+
+
+const landing_content = fetch_landing_content.map((data) => {
+  
+  return data
+})
+console.log(landing_content);
+
+
 ---
 
 <html lang="en">
 	<Head />
 	<body >
     <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh">
-      <!-- Could have a function that fetchs an array of images and cycles through them -->
-      <!-- <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh"></div> -->
+      
       <header class="absolute inset-x-0 top-0 z-50">
 
 
@@ -17,7 +31,6 @@ import Head from '../components/Head.astro'
 
 
         <NavComponent />
-        <!-- Mobile menu, show/hide based on menu open state. -->
         <ResponsiveMenuComponent />
       </header>
     
@@ -27,11 +40,14 @@ import Head from '../components/Head.astro'
           <div class="hidden sm:mb-8 sm:flex sm:justify-center">
             
           </div>
-          <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-[#f2fbff] sm:text-6xl">M & G Exteriorz</h1>
-            <p class="mt-6 text-lg leading-8 text-black-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
-            
-          </div>
+          <a href="/whatwedo">
+            <div class="text-center cursor-default bg-none rounded-lg p-5 hover:transition ease-in hover:bg-[#f1f1f1fd] text-[#f9fdff] hover:text-[#000000] hover:cursor-pointer">
+              <h1 class="text-4xl font-bold tracking-tight  sm:text-6xl underline">{landing_content[0].title}</h1>
+              
+              <PortableTextInternal class="mt-6 text-lg leading-8" value={landing_content[0].description} />
+              
+            </div>
+        </a>
         </div>
         
       </div>
