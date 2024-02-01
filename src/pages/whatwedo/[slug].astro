@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from "astro";
+import { sanityClient } from "sanity:client";
+import NavComponent from "../../components/NavComponent.astro";
+import Gallery from '../../components/Gallery.jsx'
+import {PortableText as PortableTextInternal} from "astro-portabletext"
+import Head from "../../components/Head.astro";
+
+
+
+export const getStaticPaths = ( async () => {
+  const page = await sanityClient.fetch(`*[_type == "page"]`)
+  
+  return page.map(({title, description,  _id, slug, gallery}) => {
+    return {
+      params: {slug: slug.current},
+      props: {title, description, _id, slug, gallery}
+    }
+  })
+}) satisfies GetStaticPaths;
+
+const {title, description, _id, gallery } = Astro.props
+
+
+---
+<Head />
+<NavComponent />
+
+    <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
+        <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
+        <div class="pl-[20px]">
+        <div class="text-[#525252] text-4xl font-extrabold mb-4">{title}</div>
+        <PortableTextInternal class="lg:w-[50%] md:w-[80%] pb-[20px] px-[10px]" value={description} />
+      </div>
+          <div class="mt-10">
+            <Gallery data={Astro.props} client:only />
+          </div>
+      
+    </div>

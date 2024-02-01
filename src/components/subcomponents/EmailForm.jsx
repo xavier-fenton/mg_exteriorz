@@ -35,8 +35,8 @@ export default function EmailForm() {
   }
   return (
     <>
-      <div className="flex items-center justify-center p-5 ">
-        <div className="mx-auto w-full max-w-[550px] max-lg:mx-[0px]">
+      <div className="flex items-start p-5 justify-center">
+        <div className="w-[550px] max-lg:mx-[0px]">
           <div
             className="email-sent-notification"
             style={{ display: `${display}` }}
