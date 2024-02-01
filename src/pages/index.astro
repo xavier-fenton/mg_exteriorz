@@ -2,7 +2,6 @@
 import NavComponent from '../components/NavComponent.astro'
 import ResponsiveMenuComponent from '../components/ResponsiveMenuComponent.astro'
 import Head from '../components/Head.astro'
-import {PortableText as PortableTextInternal} from "astro-portabletext"
 import { sanityClient } from "sanity:client";
 
 
@@ -19,10 +18,9 @@ const landing_content = fetch_landing_content.map((data) => {
 
 <html lang="en">
 	<Head />
-	<body >
+	<body class="bg-[#f1fafd]">
     <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh">
       
-      <header class="absolute inset-x-0 top-0 z-50">
 
 
 
@@ -30,7 +28,6 @@ const landing_content = fetch_landing_content.map((data) => {
 
         <NavComponent />
         <ResponsiveMenuComponent />
-      </header>
     
       <div class="relative isolate px-6 pt-14 lg:px-8">
         
@@ -39,10 +36,13 @@ const landing_content = fetch_landing_content.map((data) => {
             
           </div>
           <a href="/whatwedo">
-            <div class="text-center cursor-default bg-none rounded-lg p-5 hover:transition ease-in hover:bg-[#f1f1f1fd] text-[#f9fdff] hover:text-[#000000] hover:cursor-pointer">
-              <h1 class="text-4xl font-bold tracking-tight  sm:text-6xl underline">{landing_content[0].title}</h1>
-              
-              <PortableTextInternal class="mt-6 text-lg leading-8" value={landing_content[0].description} />
+
+            
+            <div class="flex flex-col items-center text-center cursor-default text-white  hover:cursor-pointer">
+
+
+              <h1 class="text-4xl font-bold tracking-tight  sm:text-6xl mb-4"><div>Welcome to</div> {landing_content[0].title}</h1>
+              <div class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 w-[250px]">Checkout what we do</div>
               
             </div>
         </a>
@@ -50,5 +50,5 @@ const landing_content = fetch_landing_content.map((data) => {
         
       </div>
     </div>
-    
+  </body>
 </html>

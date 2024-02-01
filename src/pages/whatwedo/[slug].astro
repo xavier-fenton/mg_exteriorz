@@ -1,9 +1,11 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { sanityClient } from "sanity:client";
-import imageUrlBuilder from '@sanity/image-url'
 import NavComponent from "../../components/NavComponent.astro";
 import Gallery from '../../components/Gallery.jsx'
+import {PortableText as PortableTextInternal} from "astro-portabletext"
+
+
 
 export const getStaticPaths = ( async () => {
   const page = await sanityClient.fetch(`*[_type == "page"]`)
@@ -22,13 +24,13 @@ const {title, description, _id, gallery } = Astro.props
 ---
 <NavComponent />
 
-    <div id={_id} class="relative flex flex-col items-center">
+    <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
         <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
 
-        <div class="text-4xl font-extrabold mb-4">{title}</div>
-        <div class="mb-4">{description}</div>
-        
-        
-        <Gallery data={Astro.props} client:only />
+        <div class="text-[#525252] text-4xl font-extrabold mb-4 mx-[20px]">{title}</div>
+        <PortableTextInternal class="mx-[20px] lg:w-[50%] md:w-[80%] pb-[20px]" value={description} />
+          <div class="mt-10">
+            <Gallery data={Astro.props} client:only />
+          </div>
       
     </div>

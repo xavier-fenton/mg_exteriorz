@@ -27,10 +27,17 @@ export default defineType({
         'This will display an image of your choice in the cards on the "what we do page".',
     }),
     defineField({
-      name: 'description',
-      title: 'Description of the Work',
+      name: 'briefDescription',
+      title: 'Description for card',
       type: 'text',
     }),
+    defineField({
+      name: 'description',
+      title: 'Description of the Work',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+
     defineField({
       name: 'gallery',
       title: 'Gallery',

@@ -1,8 +1,10 @@
 ---
-import ContactComponent from '../components/ContactComponent.astro'
 import ContactForm from '../components/ContactForm.jsx'
 import {PortableText as PortableTextInternal} from "astro-portabletext"
 import { sanityClient } from "sanity:client";
+import Head from '../components/Head.astro';
+import NavComponent from '../components/NavComponent.astro';
+
 
 const fetch_landing_content = await sanityClient.fetch('*[_type == "contact"]')
 
@@ -12,15 +14,14 @@ const contact_content = fetch_landing_content.map((data) => {
   
   return data
 })
-console.log(contact_content);
 ---
+<Head />
+<NavComponent />
 
-<ContactComponent />
-
-<div class="flex md: max-lg:flex-col">
-  <div class="p-5 flex flex-col justify-items-start mb-10 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:px-6">
+<div class="flex flex-col mt-[20%] sm:mt-[10%]">
+  <div class="p-5 flex flex-col justify-items-start w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 lg:px-6">
     <h2 class="mb-6 text-3xl font-bold">{contact_content[0].title}</h2>
-    <PortableTextInternal class="mb-6 text-neutral-500 dark:text-neutral-300" value={contact_content[0].description}/>
+    <PortableTextInternal class="mb-2 text-neutral-500 dark:text-neutral-300" value={contact_content[0].description}/>
     
     <p class="mb-2 text-neutral-500 dark:text-neutral-300">
       {contact_content[0].location}
