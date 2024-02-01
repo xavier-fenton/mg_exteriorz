@@ -4,6 +4,7 @@ import { sanityClient } from "sanity:client";
 import NavComponent from "../../components/NavComponent.astro";
 import Gallery from '../../components/Gallery.jsx'
 import {PortableText as PortableTextInternal} from "astro-portabletext"
+import Head from "../../components/Head.astro";
 
 
 
@@ -22,13 +23,14 @@ const {title, description, _id, gallery } = Astro.props
 
 
 ---
+<Head />
 <NavComponent />
 
     <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
         <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
         <div class="pl-[20px]">
         <div class="text-[#525252] text-4xl font-extrabold mb-4">{title}</div>
-        <PortableTextInternal class="lg:w-[50%] md:w-[80%] pb-[20px]" value={description} />
+        <PortableTextInternal class="lg:w-[50%] md:w-[80%] pb-[20px] px-[10px]" value={description} />
       </div>
           <div class="mt-10">
             <Gallery data={Astro.props} client:only />
