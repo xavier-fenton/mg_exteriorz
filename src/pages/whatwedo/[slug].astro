@@ -26,9 +26,10 @@ const {title, description, _id, gallery } = Astro.props
 
     <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
         <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
-
-        <div class="text-[#525252] text-4xl font-extrabold mb-4 mx-[20px]">{title}</div>
-        <PortableTextInternal class="mx-[20px] lg:w-[50%] md:w-[80%] pb-[20px]" value={description} />
+        <div class="pl-[20px]">
+        <div class="text-[#525252] text-4xl font-extrabold mb-4">{title}</div>
+        <PortableTextInternal class="lg:w-[50%] md:w-[80%] pb-[20px]" value={description} />
+      </div>
           <div class="mt-10">
             <Gallery data={Astro.props} client:only />
           </div>
