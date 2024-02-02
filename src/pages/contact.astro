@@ -1,43 +1,34 @@
 ---
 import ContactForm from '../components/ContactForm.jsx'
-import {PortableText as PortableTextInternal} from "astro-portabletext"
-import { sanityClient } from "sanity:client";
-import Head from '../components/Head.astro';
-import NavComponent from '../components/NavComponent.astro';
-
+import { PortableText as PortableTextInternal } from 'astro-portabletext'
+import { sanityClient } from 'sanity:client'
+import Head from '../components/Head.astro'
+import NavComponent from '../components/NavComponent.astro'
 
 const fetch_landing_content = await sanityClient.fetch('*[_type == "contact"]')
 
-
-
 const contact_content = fetch_landing_content.map((data) => {
-  
   return data
 })
 ---
+
 <Head />
 <NavComponent />
 
-<div class="flex flex-col mt-[30%] sm:mt-[20%] md:mt-[20%] lg:mt-[10%] items-center">
-  <div class="p-5 flex flex-col justify-items-start w-auto shrink-0 grow-0 basis-auto md:mb-0  lg:px-6">
-    <h2 class="mb-6 text-3xl font-bold">{contact_content[0].title}</h2>
-    <PortableTextInternal class="mb-2 text-neutral-500 dark:text-neutral-300" value={contact_content[0].description}/>
-    
-    <p class="text-neutral-500 dark:text-neutral-300">
-      {contact_content[0].location}
-    </p>
-    <p class="text-neutral-500 dark:text-neutral-300">
-      {contact_content[0].name}
+<div
+  class="flex flex-col mt-[30%] sm:mt-[20%] md:mt-[20%] lg:mt-[10%] items-center"
+>
+  <div
+    class="p-5 flex flex-col justify-items-start w-auto shrink-0 grow-0 basis-auto md:mb-0 lg:px-6"
+  >
+    <div class="mb-6 text-3xl font-bold">{contact_content[0].title}</div>
+    <PortableTextInternal class="mb-2" value={contact_content[0].description} />
 
-    </p>
-    <p class="text-neutral-500 dark:text-neutral-300">
-      {contact_content[0].email}
-      
-    </p>
-    <p class="text-neutral-500 dark:text-neutral-300">
-      {contact_content[0].number}
-      
-    </p>
+    <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center underline">
+        <div><a href="https://www.google.com/maps/place/M%26G+Exteriorz/@-36.7921327,174.6995541,17z/data=!3m1!4b1!4m6!3m5!1s0x65e0fa921259a0d:0x26e4793a6106e19f!8m2!3d-36.792137!4d174.702129!16s%2Fg%2F11k3dn96q5?entry=ttu">{contact_content[0].location}</a></div>
+        <div><a href={`mailto:${contact_content[0].email}`}>{contact_content[0].email}</a></div>
+        <div>{contact_content[0].number}</div>
+    </div>
   </div>
-  <ContactForm client:visible/>
-  </div>
+  <ContactForm client:visible />
+</div>
