@@ -27,11 +27,14 @@ const {title, description, _id, gallery } = Astro.props
 <NavComponent />
 
     <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
+
         <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />
-        <div class="pl-[20px]">
-        <div class="text-[#525252] text-4xl font-extrabold mb-4">{title}</div>
-        <PortableTextInternal class="lg:w-[50%] md:w-[80%] pb-[20px] px-[10px]" value={description} />
+        <div class="absolute my-[50%] sm:my-[49.5%] bg-[#f5f6fc]/[0.95] px-6  py-2 rounded-3xl border b-2 shadow lg:animate-bounce">
+            <div class="text-center">
+              <div class="text-[#525252] text-2xl sm:text-4xl font-extrabold ">{title}</div>
+          </div>
       </div>
+        <PortableTextInternal class="pt-[50px] sm:pt-[20px] lg:w-[50%] md:w-[80%] px-[20px] text-xl" value={description} />
           <div class="mt-10">
             <Gallery data={Astro.props} client:only />
           </div>
