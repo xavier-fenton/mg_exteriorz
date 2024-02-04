@@ -8,7 +8,6 @@ import { sanityClient } from "sanity:client";
 const fetch_landing_content = await sanityClient.fetch('*[_type == "landing"]')
 
 
-// refactor this code
 const landing_content = fetch_landing_content.map((data) => {
   return data
 })
@@ -18,7 +17,14 @@ const landing_content = fetch_landing_content.map((data) => {
 ---
 
 <html lang="en">
- 
+  <script is:inline>
+    
+    function onClick(){
+      let review_script = document.createElement('script');
+      review_script.setAttribute('src','https://embed.getwally.net/embed.js');
+      document.body.appendChild(review_script);
+    }
+  </script>
 	<Head />
 	<body class="bg-[#f1fafd]">
     <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh flex flex-col items-center ">
@@ -54,9 +60,12 @@ const landing_content = fetch_landing_content.map((data) => {
         </div>
         
       </div>
-      <div class="animate-bounce absolute text-lx text-[#2c2c2c] bottom-[-12px] text-center text-pretty align-middle bg-[#ADD8E6] rounded-xl w-fit pl-4 pr-4 shadow-lg" >Reviews!</div> 
+      <div class="animate-bounce absolute text-lx text-[#2c2c2c] bottom-[-12px] text-center text-pretty align-middle bg-[#ADD8E6] rounded-xl w-fit pl-4 pr-4 shadow-lg hover:cursor-pointer" onclick="javascript:onClick()" >Reviews!</div> 
     </div>
-    <div id="reviews" data-wally-widget="65bb17150e0a73001432a6d4" style="width: 100%; height: 100%;"></div>
-<script is:inline src="https://embed.getwally.net/embed.js"></script>
+    <div id="reviews" class="block" data-wally-widget="65bb17150e0a73001432a6d4" style="width: 100%; height: 100%;">
+    </div>
+
+      
+
   </body>
 </html>
