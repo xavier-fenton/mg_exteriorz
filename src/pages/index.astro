@@ -1,69 +1,68 @@
 ---
 import NavComponent from '../components/NavComponent.astro'
-import ResponsiveMenuComponent from '../components/ResponsiveMenuComponent.astro'
 import Head from '../components/Head.astro'
 import { sanityClient } from "sanity:client";
 
 
-const fetch_landing_content = await sanityClient.fetch('*[_type == "landing"]')
+
+  const landing_content = await sanityClient.fetch(`*[_type == "landing"]{
+  title,
+  "video": video.asset->url
+}`)
+ 
+  
+ const props = landing_content.map(({title, video}) => {
+    return {
+      title: title,
+      video: video,
+
+    }
+  })
 
 
-const landing_content = fetch_landing_content.map((data) => {
-  return data
-})
+
+
 
 
 
 ---
 
 <html lang="en">
-  <script is:inline>
-    
-    function onClick(){
-      let review_script = document.createElement('script');
-      review_script.setAttribute('src','https://embed.getwally.net/embed.js');
-      document.body.appendChild(review_script);
-    }
-  </script>
 	<Head />
 	<body class="bg-[#f1fafd]">
-    <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh flex flex-col items-center ">
+    <NavComponent />
       
 
 
 
 
-
-        <NavComponent />
-        <ResponsiveMenuComponent />
     
-      <div class="relative isolate px-6 pt-14 lg:px-8">
-        
-        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-            
-          </div>
+      <div class="flex flex-col items-center pt-[88px] lg:pt-0">
+          <video class="w-full h-auto lg:h-[100dvh] max-w-full object-fill" autoplay="autoplay" muted="muted" loop="loop" >
+            <source src={props[0].video} type="video/mp4" />
+          </video>
+       
           
 
             
-            <div class="flex flex-col items-center text-center cursor-default text-white  hover:cursor-pointer">
+            <div class="absolute top-[14%] md:top-[20%] lg:top-[40%] flex justify-center flex-col gap-2 lg:gap-4 items-center cursor-default text-white hover:cursor-pointer">
 
 
-              <h1 class="text-4xl font-bold tracking-tight  sm:text-8xl mb-10"><div>Welcome to</div> {landing_content[0].title}</h1>
-              <div class="flex flex-col gap-2">
-               <a href="/whatwedo"> <div class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-600 w-[250px]">Checkout what we do</div>
-              </a>
+                <div class="flex items-center flex-col drop-shadow-[4px_4px_5px_#616161]  lg:drop-shadow-[6px_6px_10px_#616161] text-4xl md:text-5xl font-bold lg:text-8xl"><div>Welcome to</div> {props[0].title}</div>
+                <div class="text-center">
+                <a href="/whatwedo"> <div class="relative z-10 lg:py-2.5 lg:px-5 p-[7px] w-fit me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-600 lg:w-[250px]">Checkout what we do</div>
+                </a>
+                
+              </div>
+            </div>
+        
+        
+            <div class="relative bottom-[10px] animate-bounce text-lx text-[#2c2c2c]  text-center text-pretty align-middle bg-[#ADD8E6] rounded-xl w-fit pl-4 pr-4 shadow-lg hover:cursor-pointer"><a href="#reviews">Reviews!</a></div> 
+            <div id="reviews" class="block" data-wally-widget="65bb17150e0a73001432a6d4" style="width: 100%; height: 100%;">
               
             </div>
-            </div>
-        
+            <script is:inline src="https://embed.getwally.net/embed.js"></script>
         </div>
-        
-      </div>
-      <div class="animate-bounce absolute text-lx text-[#2c2c2c] bottom-[-12px] text-center text-pretty align-middle bg-[#ADD8E6] rounded-xl w-fit pl-4 pr-4 shadow-lg hover:cursor-pointer" onclick="javascript:onClick()" >Reviews!</div> 
-    </div>
-    <div id="reviews" class="block" data-wally-widget="65bb17150e0a73001432a6d4" style="width: 100%; height: 100%;">
-    </div>
 
       
 
