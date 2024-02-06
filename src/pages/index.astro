@@ -5,12 +5,24 @@ import Head from '../components/Head.astro'
 import { sanityClient } from "sanity:client";
 
 
-const fetch_landing_content = await sanityClient.fetch('*[_type == "landing"]')
+
+  const landing_content = await sanityClient.fetch(`*[_type == "landing"]{
+  title,
+  "video": video.asset->url
+}`)
+ 
+  
+ const props = landing_content.map(({title, video}) => {
+    return {
+      title: title,
+      video: video,
+
+    }
+  })
 
 
-const landing_content = fetch_landing_content.map((data) => {
-  return data
-})
+
+
 
 
 
@@ -27,9 +39,10 @@ const landing_content = fetch_landing_content.map((data) => {
   </script>
 	<Head />
 	<body class="bg-[#f1fafd]">
-    <div class="bg-[url('/images/backgroundIMGExample.jpg')] bg-cover bg-no-repeat h-heightdvh flex flex-col items-center ">
-      
-
+    <div class="bg-cover bg-no-repeat h-heightdvh flex flex-col items-center ">
+      <video class="h-[80dvh] w-full" autoplay="autoplay" muted="muted">
+        <source src={props[0].video} type="video/mp4" />
+      </video>
 
 
 
@@ -37,7 +50,7 @@ const landing_content = fetch_landing_content.map((data) => {
         <NavComponent />
         <ResponsiveMenuComponent />
     
-      <div class="relative isolate px-6 pt-14 lg:px-8">
+      <div class="absolute top-0 isolate px-6 pt-14 lg:px-8">
         
         <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div class="hidden sm:mb-8 sm:flex sm:justify-center">
@@ -49,7 +62,7 @@ const landing_content = fetch_landing_content.map((data) => {
             <div class="flex flex-col items-center text-center cursor-default text-white  hover:cursor-pointer">
 
 
-              <h1 class="text-4xl font-bold tracking-tight  sm:text-8xl mb-10"><div>Welcome to</div> {landing_content[0].title}</h1>
+              <h1 class="text-4xl font-bold tracking-tight  sm:text-8xl mb-10"><div>Welcome to</div> {props[0].title}</h1>
               <div class="flex flex-col gap-2">
                <a href="/whatwedo"> <div class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-600 w-[250px]">Checkout what we do</div>
               </a>
