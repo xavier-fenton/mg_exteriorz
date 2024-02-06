@@ -17,6 +17,11 @@ export default defineType({
       description: 'This will be the background image, or you can use a video.',
     }),
     defineField({
+      name: 'video',
+      title: 'Video Upload',
+      type: 'file',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
