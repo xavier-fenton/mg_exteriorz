@@ -18,7 +18,7 @@ const Gallery = ({ data }) => {
             return (
               <img
                 key={index}
-                className="w-[100%] h-[50%] object-cover cursor-pointer pt-2"
+                className="shadow-xl w-[100%] h-[50%] object-cover cursor-pointer pt-2"
                 src={`${source}`}
                 alt={`Gallery Image ${index}`}
               />

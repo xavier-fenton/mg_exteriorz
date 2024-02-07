@@ -11,6 +11,7 @@ import imageUrlBuilder from '@sanity/image-url'
 
 export const getStaticPaths = ( async () => {
   const page = await sanityClient.fetch(`*[_type == "page"]`)
+  
   return page.map(({title, description,  _id, slug, gallery, cardimage}) => {
     
     return {
@@ -40,7 +41,7 @@ const builder = imageUrlBuilder(sanityClient)
               <div class="text-[#525252] text-2xl sm:text-4xl font-extrabold ">{title}</div>
           </div>
       </div>
-        <PortableTextInternal class="pt-[50px] sm:pt-[20px] lg:w-[50%] md:w-[80%] px-[20px] text-xl" value={description} />
+        <PortableTextInternal class="border text-center rounded-xl shadow-lg mx-[10px] mt-[20px] w-fit sm:mt-[50px] lg:w-[50%] md:w-[80%] p-[20px] text-xl" value={description} />
           <div class="mt-10">
             <Gallery data={Astro.props} client:only />
           </div>
