@@ -34,7 +34,7 @@ const builder = imageUrlBuilder(sanityClient)
 <NavComponent />
 
     <div id={_id} class="relative flex flex-col items-center bg-[#f1fafd]">
-        {cardimage ? <img class="w-full h-heightdvh object-cover mb-4" src={urlFor(cardimage.asset)} /> : <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />}
+        {cardimage ? <img class="w-full h-[45dvh] md:h-[50dvh] lg:h-[100dvh] object-cover mb-4" src={urlFor(cardimage.asset)} /> : <img class="w-full object-cover mb-4" src="/images/backgroundIMGExample.jpg" />}
         <div class="absolute my-[50%] sm:my-[49.5%] bg-[#f5f6fc]/[0.95] px-6  py-2 rounded-3xl border b-2 shadow lg:animate-bounce">
             <div class="text-center">
               <div class="text-[#525252] text-2xl sm:text-4xl font-extrabold ">{title}</div>
