@@ -2,17 +2,22 @@
 import { sanityClient } from "sanity:client";
 import NavComponent from "../components/NavComponent.astro";
 import Head from '../components/Head.astro'
+import imageUrlBuilder from '@sanity/image-url'
 
 
   const page = await sanityClient.fetch(`*[_type == "page"]`)
   
-  const props =  page.map(({title, description,  _id, slug, briefDescription}) => {
+  const props =  page.map(({title, description,  _id, slug, briefDescription, cardimage}) => {
     return {
-      title, description, _id, slug, briefDescription
+      title, description, _id, slug, briefDescription, cardimage
     }
   })
  
-  
+  const builder = imageUrlBuilder(sanityClient)
+
+  function urlFor(source) {
+    return builder.image(source)
+  }
 
 
 
@@ -33,7 +38,7 @@ import Head from '../components/Head.astro'
       
     </div>
     <div class="text-center bg-[#f5f6fc]/[0.95] rounded-xl text-[#525252] p-[20px]">
-      <h1 class="text-4xl font-bold tracking-tightsm:text-6xl">What we do!</h1>
+      <div class="text-4xl font-bold tracking-tightsm:text-6xl">What we do!</div>
       <div class="mt-2 text-lg leading-8">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua. </div>
       
     </div>
@@ -51,11 +56,11 @@ import Head from '../components/Head.astro'
 
           <div id={props._id}class="mb-4 bg-white h-auto border border-gray-200 shadow max-sm: mx-5">
             <a href={`/whatwedo/${props.slug.current}`} >
-                <img class="" src="/images/backgroundIMGExample.jpg" alt="" />
+                {props.cardimage ? <img class="h-[152px] w-full object-cover" src={urlFor(props.cardimage.asset)} alt="" /> : <img class="h-[152px] w-full object-cover" src="/images/backgroundIMGExample.jpg" alt="" /> }
             
                   <div class="p-2">
-                          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{props.title}</h5>
-                      <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">{props.briefDescription}</p>
+                          <div class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{props.title}</div>
+                      <div class="mb-1 font-normal text-gray-700 dark:text-gray-400">{props.briefDescription}</div>
                       
                   </div>
               </a>
