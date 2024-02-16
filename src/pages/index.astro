@@ -3,7 +3,6 @@ import NavComponent from '../components/NavComponent.astro'
 import Head from '../components/Head.astro'
 import { sanityClient } from "sanity:client";
 import {PortableText as PortableTextInternal} from "astro-portabletext"
-const test = await sanityClient.fetch(`*[_type == "landing"]`)
 
   const landing_content = await sanityClient.fetch(`*[_type == "landing"]{
   title,
@@ -49,7 +48,9 @@ const test = await sanityClient.fetch(`*[_type == "landing"]`)
           
 
             
+
             <div class="absolute top-[40%] flex justify-center flex-col gap-2 lg:gap-4 items-center cursor-default text-white hover:cursor-pointer">
+
 
 
                 <div class="flex items-center flex-col drop-shadow-[4px_4px_5px_#616161]  lg:drop-shadow-[6px_6px_5px_#282828] text-5xl font-bold lg:text-8xl">
